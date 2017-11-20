@@ -18,11 +18,14 @@ include("bancoLink.php");
 
  
  
-$cadrastos = listaLink($conexao);
+
+$cadastros = listaLink($conexao);
 ?>
 
+<?php if (array_key_exists("removido", $_GET)&& $_GET['removido'] == 'true') { ?>
+  <p class ="alert-success">Pergunta apagado com sucesso</p>
+  <?php }?>
 
-  <body>
 
 <table class="table table-striped table-bordered">
 
@@ -32,7 +35,7 @@ $cadrastos = listaLink($conexao);
     <th><big>Título</th>
     <th><big>Link</th>
     <th><big>Remover</th>
-    
+
     
 
   
@@ -40,38 +43,32 @@ $cadrastos = listaLink($conexao);
 
 
 <?php
-foreach ($cadrastos as $cadastro){
+foreach ($cadastros as $cadastro){
 ?>
 
-
+  
   
   <tr>
       
     <td><?= $cadastro['titulo'] ?> </td>
     <td><?= $cadastro['link'] ?> </td>
-  
+ 
     
     <td>
-    <form action="remove-link.php" method="post" >
-    <input type="hidden" name="id" value="<?=$cadastro['id'] ?>" />
+    <form action="remove-pergunta.php" method="post" >
+    <input type="hidden" name="id" value="<?=$pergunta['id'] ?>" />
     <button class="btn btn-danger">Remover</button>
     </form>
     </td>
     
-  
+ 
   </tr>
   
-  
-
-
- 
-
+<?php
+}
+?>
 </table>
 
-
- 
-
-<?php } ?>
 
  <br>
       <a class="btn btn-primary btn-outline btn-lg" href="linkForm.php">Cadastrar Link</a>
