@@ -34,6 +34,7 @@ $cadastros = listaLink($conexao);
   
     <th><big>Título</th>
     <th><big>Link</th>
+       <th><big>Categoria</th>
     <th><big>Remover</th>
 
     
@@ -52,7 +53,7 @@ foreach ($cadastros as $cadastro){
       
     <td><?= $cadastro['titulo'] ?> </td>
     <td><?= $cadastro['link'] ?> </td>
- 
+    <td><?= $cadastro['categoria'] ?> </td>
     
     <td>
     <form action="remove-pergunta.php" method="post" >
