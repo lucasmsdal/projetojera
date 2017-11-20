@@ -23,6 +23,7 @@
         <h1>Cadastro</h1>
         <input name="titulo" type="text" placeholder="Título" pattern="^[\w]{3,16}$" autofocus="autofocus" required="required" class="input pass"/>
         <input name="link" type="text" placeholder="Link" required="required" class="input pass"/>
+        <input name="categoria" type="text" placeholder="Categoria" required="required" class="input pass"/>
        
  
         
