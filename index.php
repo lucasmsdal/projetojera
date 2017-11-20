@@ -1,75 +1,130 @@
 <?php
 include("cabecalho.php");
-include("navbar.php");
+ include ("logicaUsuario.php");
+ ?>
+
+
+<?php
+  
+ if(usuarioEstaLogado()) {?>
+ 
+ 
+ <?php include("navbar.php");
+
+ include("conecta.php");
+
+include("bancoLink.php");
+
+
+ 
+ 
+$cadrastos = listaLink($conexao);
+?>
+
+
+  <body>
+
+<table class="table table-striped table-bordered">
+
+
+
+  
+    <th><big>Título</th>
+    <th><big>Link</th>
+    <th><big>Remover</th>
+    
+    
+
+  
+
+
+
+<?php
+foreach ($cadrastos as $cadastro){
 ?>
 
 
   
+  <tr>
+      
+    <td><?= $cadastro['titulo'] ?> </td>
+    <td><?= $cadastro['link'] ?> </td>
+  
+    
+    <td>
+    <form action="remove-link.php" method="post" >
+    <input type="hidden" name="id" value="<?=$cadastro['id'] ?>" />
+    <button class="btn btn-danger">Remover</button>
+    </form>
+    </td>
+    
+  
+  </tr>
+  
+  
 
-   
 
-      <div class="row row-offcanvas row-offcanvas-right">
+ 
 
-        <div class="col-xs-12 col-sm-9">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
-          <div class="jumbotron">
-            <h1>PPPPPP</h1>
-            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-          </div>
-          <div class="row">
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-          </div><!--/row-->
-        </div><!--/.col-xs-12.col-sm-9-->
+</table>
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-          </div>
-        </div><!--/.sidebar-offcanvas-->
-      </div><!--/row-->
 
-      <hr>
+ 
 
+<?php } ?>
+
+ <br>
+      <a class="btn btn-primary btn-outline btn-lg" href="linkForm.php">Cadastrar Link</a>
+      <br>
+
+       </body>
+ <?php } else {?>
+
+
+
+
+     <link href="login.css" rel="stylesheet">
+  <div class="container">
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+    <div class="col-md-6">
+    
+    <div id="logbox">
+    
+      <form id="cadastro" method="post" action="cadastro.php">
+        <h1>Cadastro</h1>
+        <input name="nome" type="text" placeholder="Nome" pattern="^[\w]{3,16}$" autofocus="autofocus" required="required" class="input pass"/>
+        <input name="email" type="email" placeholder="Email" class="input pass"/>
+        <input name="senha" type="password" placeholder="Senha" required="required" class="input pass"/>
+ 
+        
+        <input type="submit" value="Cadastrar" class="inputButton"/>
+      
+      </form>
+    </div>
+   </div>
+    <!--col-md-6-->
+    
+   <div class="col-md-6">
+    <div id="logbox">
+      <form id="login" method="post" action="login-usuario.php">
+        <h1>Login</h1>
+        <input name="email" type="email" placeholder="Email" class="input pass"/>
+        <input name="senha" type="password" placeholder="Senha" required="required" class="input pass"/>
+        <input type="submit" value="Login" class="inputButton"/>
+        
+      </form>
+    </div>
+    </div>
+
+  </div>
+  <?php } ?>
       <?php
 include("rodape.php");
 ?>
