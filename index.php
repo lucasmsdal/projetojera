@@ -7,34 +7,32 @@ include("cabecalho.php");
 <?php
   
  if(usuarioEstaLogado()) {?>
- 
+ <link href="listaLink.css" rel="stylesheet">
  
  <?php include("navbar.php");
 
  include("conecta.php");
 
 include("bancoLink.php");
+?>
 
-
- 
- 
+  
+ <?php
 
 $cadastros = listaLink($conexao);
 ?>
 
-<?php if (array_key_exists("removido", $_GET)&& $_GET['removido'] == 'true') { ?>
-  <p class ="alert-success">Pergunta apagado com sucesso</p>
-  <?php }?>
+
 
 
 <table class="table table-striped table-bordered">
 
 
 
-  
+
     <th><big>Título</th>
     <th><big>Link</th>
-       <th><big>Categoria</th>
+   <th><big>Categoria</th>
     <th><big>Remover</th>
 
     
@@ -50,16 +48,21 @@ foreach ($cadastros as $cadastro){
   
   
   <tr>
-      
+  
     <td><?= $cadastro['titulo'] ?> </td>
-    <td><?= $cadastro['link'] ?> </td>
+    <td><a href="?= $cadastro['link'] ?"><?= $cadastro['link'] ?></a> </td>
     <td><?= $cadastro['categoria'] ?> </td>
     
     <td>
-    <form action="remove-pergunta.php" method="post" >
-    <input type="hidden" name="id" value="<?=$pergunta['id'] ?>" />
-    <button class="btn btn-danger">Remover</button>
+<div id="logbox">
+
+    <form action="remove-cadastro.php" method="POST">
+
+      <input type="checkbox" name="id" value="<?=$cadastro['id']?>">
+      <input type="submit" value="Remover" class="inputButton"/>
     </form>
+  </div>
+
     </td>
     
  
@@ -71,9 +74,7 @@ foreach ($cadastros as $cadastro){
 </table>
 
 
- <br>
-      <a class="btn btn-primary btn-outline btn-lg" href="linkForm.php">Cadastrar Link</a>
-      <br>
+ 
 
        </body>
  <?php } else {?>
